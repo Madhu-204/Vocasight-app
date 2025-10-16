@@ -1,0 +1,21 @@
+# Core packages
+numpy==1.26.4
+
+# PyTorch (CPU-only)
+torch==2.1.2+cpu
+torchvision==0.16.2+cpu
+torchaudio==2.1.2+cpu
+
+# OpenCV
+opencv-python==4.9.0.80
+opencv-python-headless==4.8.1.78
+
+# YOLO
+ultralytics==8.0.196
+
+# Streamlit
+streamlit==1.32.0
+streamlit-webrtc==0.47.3
+
+# Text-to-Speech
+pyttsx3==2.90
