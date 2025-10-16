@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import cv2
 from ultralytics import YOLO
@@ -6,13 +7,12 @@ import pyttsx3
 # ------------------------------
 # Streamlit UI
 # ------------------------------
+st.set_page_config(page_title="🎯 VocaSight", layout="wide")
 st.title("🎯 VocaSight")
 camera_choice = st.radio("Select Camera:", ["Front", "Back"])
 
 # Map choice to OpenCV camera index
-# Note: On laptops, usually 0 is default camera. 
-# On mobile devices with Streamlit sharing, OpenCV can't directly select front/back camera.
-camera_index = 0 if camera_choice == "Front" else 1  # You may need to adjust indexes
+camera_index = 0 if camera_choice == "Front" else 1  # adjust if needed
 
 # ------------------------------
 # Initialize TTS
@@ -28,9 +28,14 @@ speak("Hello! VocaSight is now active.")
 st.write(f"{camera_choice} camera is starting...")
 
 # ------------------------------
-# Load YOLO model
+# Load YOLO model (local)
 # ------------------------------
-model = YOLO("yolov8n.pt")
+model_path = "yolov8n.pt"
+if not os.path.exists(model_path):
+    st.error("YOLO model file 'yolov8n.pt' not found in project root.")
+    st.stop()
+
+model = YOLO(model_path)
 
 # ------------------------------
 # Start camera
@@ -39,6 +44,7 @@ cap = cv2.VideoCapture(camera_index)
 FRAME_WINDOW = st.image([])
 
 previous_objects = set()
+st.write("📸 Camera started. Detecting objects...")
 
 while True:
     ret, frame = cap.read()
