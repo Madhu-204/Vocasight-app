@@ -7,7 +7,6 @@ torchvision==0.16.2+cpu
 torchaudio==2.1.2+cpu
 
 # OpenCV
-opencv-python==4.9.0.80
 opencv-python-headless==4.8.1.78
 
 # YOLO
@@ -19,3 +18,4 @@ streamlit-webrtc==0.47.3
 
 # Text-to-Speech
 pyttsx3==2.90
+
